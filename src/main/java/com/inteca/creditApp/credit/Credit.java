@@ -27,10 +27,8 @@ public class Credit
     private Product product;
 
     //konstruktory
-    public Credit(String creditName, Customer customer, Product product) {
+    public Credit(String creditName) {
         this.creditName = creditName;
-        this.customer = customer;
-        this.product = product;
     }
 
     public Credit() {
@@ -64,10 +62,16 @@ public class Credit
         return customer;
     }
 
+    /*
     public void setCustomer(Customer customer, String name, String surname, String pesel) {
         customer.setName(name);
         customer.setSurname(surname);
         customer.setPesel(pesel);
+    }
+    */
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Product getProduct() {

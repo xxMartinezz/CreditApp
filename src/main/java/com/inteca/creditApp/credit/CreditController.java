@@ -1,7 +1,9 @@
 package com.inteca.creditApp.credit;
 
+import com.inteca.creditApp.customer.Customer;
 import com.inteca.creditApp.customer.CustomerRepository;
 import com.inteca.creditApp.exceptions.CreditsNotFoundException;
+import com.inteca.creditApp.product.Product;
 import com.inteca.creditApp.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,8 +38,11 @@ public class CreditController
 
     //tworzenie nowego kredytu
     @PostMapping("/new")
-    public Credit create(@RequestBody Credit credit)
+    public Credit create(@RequestBody Credit credit, Product product, Customer customer)
     {
+        //creditRepository.save(credit);
+        productRepository.save(product);
+        customerRepository.save(customer);
         return creditRepository.save(credit);
     }
 }

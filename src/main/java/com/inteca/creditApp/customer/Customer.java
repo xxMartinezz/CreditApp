@@ -13,7 +13,7 @@ public class Customer
     //kolumny
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int creditId;
+    private int customerId;
 
     @Column(name = "firstName")
     private String firstName;
@@ -42,7 +42,7 @@ public class Customer
     @Override
     public String toString() {
         return "Customer{" +
-                "id=" + creditId +
+                "id=" + customerId +
                 ", firstName='" + firstName + '\'' +
                 ", surname='" + surname + '\'' +
                 ", pesel='" + pesel + '\'' +
@@ -50,8 +50,8 @@ public class Customer
                 '}';
     }
 
-    public Integer getCreditId() {
-        return creditId;
+    public Integer getCustomerId() {
+        return customerId;
     }
 
     public String getName() {
