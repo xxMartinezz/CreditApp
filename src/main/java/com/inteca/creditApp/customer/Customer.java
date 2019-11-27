@@ -26,20 +26,6 @@ public class Customer
     @Column(name = "pesel")
     private String pesel;
 
-    /*
-    @ElementCollection
-    @CollectionTable(name = "customers", joinColumns = @JoinColumn(name = "creditId"))
-    @Column(name = "customers")
-    private List<Customer> customers = new ArrayList<Customer>();
-     */
-
-    /*
-    //relacja encji CUSTOMER z encja CREDIT
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customerId")
-    private List<Credit> credit = new ArrayList<>();
-    */
-
     //relacja encji CUSTOMER z encja CREDIT
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "customer_credit", joinColumns=@JoinColumn(name="customerId"),inverseJoinColumns=@JoinColumn(name="creditId"))

@@ -2,8 +2,6 @@ package com.inteca.creditApp.credit;
 
 import com.inteca.creditApp.customer.Customer;
 import com.inteca.creditApp.product.Product;
-import com.inteca.creditApp.product.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 
@@ -23,6 +21,7 @@ public class Credit
     @ManyToOne
     @JoinColumn(name = "customerId")
     private Customer customer;
+
 
     @ManyToOne
     @JoinColumn(name = "productId")
@@ -49,8 +48,8 @@ public class Credit
         return "Credit{" +
                 "creditId=" + creditId +
                 ", creditName='" + creditName + '\'' +
-                //", customer=" + customer +
-                //", product=" + product +
+                ", customer=" + customer +
+                ", product=" + product +
                 '}';
     }
 

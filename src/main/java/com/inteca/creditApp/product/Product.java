@@ -8,7 +8,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "PRODUCT")
-public class Product {
+public class Product
+{
     //pola dla encji
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,13 +24,6 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "product_credit_mapping", joinColumns=@JoinColumn(name="productId"),inverseJoinColumns=@JoinColumn(name="creditId"))
     private List<Credit> credit = new ArrayList<>();
-
-    /*
-    //relacja encji CUSTOMER z encja CREDIT
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "productId")
-    private List<Credit> credit = new ArrayList<>();
-    */
 
     //konstruktory
     public Product(String productName, int value) {
@@ -46,7 +40,7 @@ public class Product {
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", value=" + value +
-                ", credit=" + credit +
+                //", credit=" + credit +
                 '}';
     }
 
