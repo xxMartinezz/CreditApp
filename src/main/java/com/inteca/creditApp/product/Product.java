@@ -20,10 +20,16 @@ public class Product {
     @Column(name = "value")
     private int value;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "product_credit_mapping", joinColumns=@JoinColumn(name="productId"),inverseJoinColumns=@JoinColumn(name="creditId"))
+    private List<Credit> credit = new ArrayList<>();
+
+    /*
     //relacja encji CUSTOMER z encja CREDIT
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "productId")
     private List<Credit> credit = new ArrayList<>();
+    */
 
     //konstruktory
     public Product(String productName, int value) {
@@ -64,9 +70,9 @@ public class Product {
         this.value = value;
     }
 
-    public List<Credit> getCredit() {
+    /*public List<Credit> getCredit() {
         return credit;
-    }
+    }*/
 
     public void setCredit(List<Credit> credit) {
         this.credit = credit;

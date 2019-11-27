@@ -2,6 +2,8 @@ package com.inteca.creditApp.credit;
 
 import com.inteca.creditApp.customer.Customer;
 import com.inteca.creditApp.product.Product;
+import com.inteca.creditApp.product.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 
@@ -27,7 +29,14 @@ public class Credit
     private Product product;
 
     //konstruktory
-    public Credit(String creditName) {
+    public Credit(String creditName, Customer customer, Product product) {
+        this.creditName = creditName;
+        this.customer = customer;
+        this.product = product;
+    }
+
+    public Credit(String creditName)
+    {
         this.creditName = creditName;
     }
 
@@ -40,8 +49,8 @@ public class Credit
         return "Credit{" +
                 "creditId=" + creditId +
                 ", creditName='" + creditName + '\'' +
-                ", customer=" + customer +
-                ", product=" + product +
+                //", customer=" + customer +
+                //", product=" + product +
                 '}';
     }
 
@@ -62,14 +71,6 @@ public class Credit
         return customer;
     }
 
-    /*
-    public void setCustomer(Customer customer, String name, String surname, String pesel) {
-        customer.setName(name);
-        customer.setSurname(surname);
-        customer.setPesel(pesel);
-    }
-    */
-
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
@@ -78,7 +79,9 @@ public class Credit
         return product;
     }
 
+
     public void setProduct(Product product) {
         this.product = product;
     }
+
 }

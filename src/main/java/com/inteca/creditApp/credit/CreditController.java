@@ -33,16 +33,51 @@ public class CreditController
         {
             throw new CreditsNotFoundException("Brak kredytów w bazie");
         }
-        else return creditRepository.findAll(pageable);
+        else return credits;
     }
+
 
     //tworzenie nowego kredytu
     @PostMapping("/new")
-    public Credit create(@RequestBody Credit credit, Product product, Customer customer)
+    public Credit create(@RequestBody Credit credit, Customer customer, Product product)
     {
+        //String productName = "afaga";
+        //int value = 1424;
+        //Product product = new Product();
+        //product.setProductName(productName);
+        //product.setValue(value);
+        //Customer customer = new Customer("", "", "");
         //creditRepository.save(credit);
-        productRepository.save(product);
+        credit.setCustomer(customer);
+        credit.setProduct(product);
         customerRepository.save(customer);
+        productRepository.save(product);
+
+
         return creditRepository.save(credit);
+
+        //creditRepository.save(credit);
+        //productRepository.save(product);
+        //customerRepository.save(customer);
+        //return creditRepository.save(credit);
     }
+
+/*
+    @RequestMapping("new")
+    public Credit create(
+            @PathVariable String creditName,
+            @PathVariable String name,
+            @PathVariable String surname,
+            @PathVariable String pesel,
+            @PathVariable String productName,
+            @PathVariable int value)
+    {
+        Customer customer = new Customer(name, surname, pesel);
+        Product product = new Product(productName, value);
+        customerRepository.save(customer);
+        productRepository.save(product);
+        Credit credit = new Credit(creditName, customer, product);
+        return creditRepository.save(credit);
+        //return credit;
+    }*/
 }

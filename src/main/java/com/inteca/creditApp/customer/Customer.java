@@ -1,6 +1,7 @@
 package com.inteca.creditApp.customer;
 
 import com.inteca.creditApp.credit.Credit;
+import org.hibernate.validator.constraints.pl.PESEL;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,22 +22,36 @@ public class Customer
     @Column(name = "surname")
     private String surname;
 
+    @PESEL
     @Column(name = "pesel")
     private String pesel;
 
+    /*
+    @ElementCollection
+    @CollectionTable(name = "customers", joinColumns = @JoinColumn(name = "creditId"))
+    @Column(name = "customers")
+    private List<Customer> customers = new ArrayList<Customer>();
+     */
+
+    /*
     //relacja encji CUSTOMER z encja CREDIT
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "customerId")
+    private List<Credit> credit = new ArrayList<>();
+    */
+
+    //relacja encji CUSTOMER z encja CREDIT
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "customer_credit", joinColumns=@JoinColumn(name="customerId"),inverseJoinColumns=@JoinColumn(name="creditId"))
     private List<Credit> credit = new ArrayList<>();
 
     //konstruktory
     public Customer() { }
 
-    public Customer(String firstName, String surname, String pesel, List<Credit> credit) {
+    public Customer(String firstName, String surname, String pesel) {
         this.firstName = firstName;
         this.surname = surname;
         this.pesel = pesel;
-        this.credit = credit;
     }
 
     @Override
@@ -46,7 +61,7 @@ public class Customer
                 ", firstName='" + firstName + '\'' +
                 ", surname='" + surname + '\'' +
                 ", pesel='" + pesel + '\'' +
-                ", credit=" + credit +
+                //", credit=" + credit +
                 '}';
     }
 
@@ -78,9 +93,10 @@ public class Customer
         this.pesel = pesel;
     }
 
-    public List<Credit> getCredit() {
+    /*public List<Credit> getCredit() {
         return credit;
-    }
+    }*/
+
 
     public void setCredit(List<Credit> credit) {
         this.credit = credit;
